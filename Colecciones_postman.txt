@@ -1,0 +1,72 @@
+//Para Post de tarjeta
+//Aclaración en cuenta me permite actualmente solo 2 primeros dígitos ya que si pone mas da error
+//por falta de tiempo falto corregir puede proba cuenta de digito por cuestión de prueba en Swagger y Postman
+{
+"idTarjeta": 1,
+  "cuenta": 65,
+  "nombre": "Wario",
+  "apellido": "Super Selectos"
+}
+
+
+
+{
+ "idTarjeta": 1,
+  "cuenta": 65,
+  "nombre": "Wario",
+  "apellido": "Martinez",
+  "fecha": "2024-05-10T09:33:25.262Z",
+  "descripcion": "Super Selectos",
+  "monto": 76
+ 
+ 
+}
+{
+"idCompra": 1,
+ "idTarjeta": 1,
+  "cuenta": 65,
+  "nombre": "Wario",
+  "apellido": "Martinez",
+  "fecha": "2024-05-10T09:33:25.262Z",
+  "descripcion": "Super Selectos",
+  "monto": 76,
+  "abono": 34
+ 
+}
+
+{
+"idTarjeta": 2,
+  "cuenta": 6767893456781234,
+  "nombre": "Walter",
+  "apellido": "Maravilla"
+}
+
+
+
+{
+ "idTarjeta": 2,
+  "cuenta": 6767893456781234,
+  "nombre": "Walter",
+  "apellido": "Maravilla",
+  "fecha": "2024-05-10T09:33:25.262Z",
+  "descripcion": "aaa",
+  "monto": 33
+ 
+ 
+}
+{
+"idCompra": 4,
+ "idTarjeta": 6767893456781234,
+  "cuenta": 67,
+  "nombre": "Walter",
+  "apellido": "Maravilla",
+  "fecha": "2024-05-10T09:33:25.262Z",
+  "descripcion": "hhj",
+  "monto": 56,
+  "abono": 7
+ 
+}
+puede seguir ingresando el resto solo tiene que verificar los id cuando vaya ingresar datos
+
+El estado cuenta y la transacción no esta funcionando se pensaba realizarlo esta en desarrollo
+

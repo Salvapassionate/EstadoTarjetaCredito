@@ -1,0 +1,17 @@
+[
+  {
+    "Name": "Nuevo perfil",
+    "Projects": [
+      {
+        "Name": "TarjetaBA.Server\\TarjetaBA.Server.csproj",
+        "Action": "StartWithoutDebugging",
+        "DebugTarget": ""
+      },
+      {
+        "Name": "TarjetaBA.Cliente\\TarjetaBA.Cliente.csproj",
+        "Action": "StartWithoutDebugging",
+        "DebugTarget": ""
+      }
+    ]
+  }
+]

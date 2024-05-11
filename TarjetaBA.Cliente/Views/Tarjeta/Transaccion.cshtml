@@ -1,0 +1,150 @@
+﻿@model TarjetaBA.Cliente.Models.TransaccionViewModel
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Estado Cuenta de TC - Bancatlan</title>
+    <style>
+        /* Estilos personalizados para replicar la apariencia de Bancatlan */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+            margin: 0;
+            padding: 0;
+        }
+
+        .card {
+            margin: 50px auto;
+            max-width: 800px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .card-header {
+            background-color: #c0392b; /* Color rojo del Banco Atlántida */
+            color: #fff;
+            border-radius: 10px 10px 0 0;
+            padding: 10px;
+        }
+
+        .card-body {
+            padding: 20px;
+        }
+
+        .row {
+            margin-right: -15px;
+            margin-left: -15px;
+        }
+
+        .col-md-6 {
+            flex: 0 0 50%;
+            max-width: 50%;
+        }
+
+        .table {
+            width: 100%;
+            margin-bottom: 1rem;
+            color: #212529;
+            border-collapse: collapse;
+        }
+
+            .table th, .table td {
+                padding: .75rem;
+                vertical-align: top;
+                border-top: 1px solid #dee2e6;
+            }
+
+            .table thead th {
+                vertical-align: bottom;
+                border-bottom: 2px solid #dee2e6;
+            }
+
+            .table tbody + tbody {
+                border-top: 2px solid #dee2e6;
+            }
+
+        .btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn-outline-primary {
+            color: #c0392b; /* Color rojo del Banco Atlántida */
+            background-color: #fff;
+            border: 1px solid #c0392b; /* Color rojo del Banco Atlántida */
+        }
+
+            .btn-outline-primary:hover {
+                background-color: #c0392b; /* Color rojo del Banco Atlántida */
+                color: #fff;
+            }
+    </style>
+</head>
+<body>
+    <div class="card text-primary">
+        <div class="card-header text-center">
+            <h5>Transaccion  - Banco Atlandida</h5>
+        </div>
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-6">
+                    <dl class="row">
+                        <dt class="col-sm-4 text-center text-dark">
+                            Titular
+                        </dt>
+                        <dd class="col-sm-8">
+                            @Html.DisplayFor(model => model.Titular)
+                        </dd>
+                        <dt class="col-sm-4 text-center text-dark">
+                            Número de Tarjeta
+                        </dt>
+                        <dd class="col-sm-8">
+                            @Html.DisplayFor(model => model.NumeroTarjeta)
+                        </dd>
+                    </dl>
+                </div>
+            </div>
+            <div class="card text-primary mt-4">
+                <div class="card-body">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Fecha</th>
+                                <th>Descripción</th>
+                                <th>Cargo</th>
+                                <th>Abono</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @{
+                                // Construir un diccionario de pagos correspondientes
+                               // var pagosCorrespondientes = Model.Pagos.ToDictionary(p => p.Fecha, p => p.Fecha);
+                            }
+                            @foreach (var compra in Model.Compras)
+                            {
+                                <tr>
+                                    <td>@compra.Fecha</td>
+                                    <td>@compra.Descripcion</td>
+                                    <td>@compra.Monto</td>
+                                    <td>
+                                        
+                                   
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+                <div class="card-footer text-center">
+                  
+                    <a asp-action="Index" class="btn btn-outline-success btn-sm">Volver a la lista</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

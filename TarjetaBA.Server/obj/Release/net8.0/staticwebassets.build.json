@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "vnbODCLV7wraLDIIl0qzfnoh1ka5HsFJpAlC4mv+mbM=",
+  "Source": "TarjetaBA.Server",
+  "BasePath": "_content/TarjetaBA.Server",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}

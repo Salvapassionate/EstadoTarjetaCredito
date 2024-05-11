@@ -1,0 +1,153 @@
+﻿@model IEnumerable<TarjetaViewModel>
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Listado de Tarjetas - Bancatlan</title>
+    <style>
+        /* Estilos personalizados para replicar la apariencia de Bancatlan */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+            margin: 0;
+            padding: 0;
+        }
+
+        .card {
+            margin: 50px auto;
+            max-width: 800px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .card-header {
+            background-color: #c0392b; /* Color rojo del Banco Atlántida */
+            color: #fff;
+            border-radius: 10px 10px 0 0;
+            padding: 10px;
+        }
+
+        .card-body {
+            padding: 20px;
+        }
+
+        .row {
+            margin-right: -15px;
+            margin-left: -15px;
+        }
+
+        .col-md-12 {
+            flex: 0 0 100%;
+            max-width: 100%;
+        }
+
+        .btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn-outline-primary {
+            color: #c0392b; /* Color rojo del Banco Atlántida */
+            background-color: #fff;
+            border: 1px solid #c0392b; /* Color rojo del Banco Atlántida */
+        }
+
+            .btn-outline-primary:hover {
+                background-color: #c0392b; /* Color rojo del Banco Atlántida */
+                color: #fff;
+            }
+
+        .table {
+            width: 100%;
+            margin-bottom: 1rem;
+            color: #212529;
+            border-collapse: collapse;
+        }
+
+            .table th, .table td {
+                padding: .75rem;
+                vertical-align: top;
+                border-top: 1px solid #dee2e6;
+            }
+
+            .table thead th {
+                vertical-align: bottom;
+                border-bottom: 2px solid #dee2e6;
+            }
+
+            .table tbody + tbody {
+                border-top: 2px solid #dee2e6;
+            }
+    </style>
+</head>
+<body>
+    <div class="card text-primary">
+        <div class="card-header text-center">
+            <h5>Listado de Tarjetas - Bancatlan</h5>
+        </div>
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <a form id="tarjeta-form" asp-action="Create" class="btn btn-outline-primary btn-sm">Crear Nuevo</a>
+                            <hr />
+                            <h5 class="panel-title">Tarjetas</h5>
+                        </div>
+                        <div class="panel-body">
+                            <table class="table table-hover table-responsive table-striped" id="MyTable">
+                                <thead>
+                                    <tr>
+                                        <th>
+                                            Cuenta
+                                        </th>
+                                        <th>
+                                            Nombre
+                                        </th>
+                                        <th>
+                                            Apellido
+                                        </th>
+                                        <th>Acciones</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var item in Model)
+                                    {
+                                        <tr>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.Cuenta)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.Nombre)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.Apellido)
+                                            </td>
+
+                                            <td>
+                                                <a asp-action="EstadoCuenta" asp-route-idTarjeta="@item.IdTarjeta"  class="btn btn-outline-warning btn-sm">Estado de cuenta</a>
+                                                <a asp-action="Compra" asp-route-id="@item.IdTarjeta" class="btn btn-outline-info btn-sm">Registrar Compra</a>
+                                                <a asp-action="Pago" asp-route-id="@item.IdTarjeta" class="btn btn-outline-danger btn-sm">Registrar Pago</a>
+                                                <a asp-action="Transaccion" asp-route-id="@item.IdTarjeta" class="btn btn-outline-info btn-sm">Transacciones</a>
+                                            </td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card-footer text-muted text-center">
+            Crud Tarjetas
+        </div>
+    </div>
+</body>
+</html>

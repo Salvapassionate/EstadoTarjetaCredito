@@ -1,0 +1,144 @@
+﻿@model TarjetaBA.Cliente.Models.PagoViewModel
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro de Pago TC - Bancatlan</title>
+    <style>
+        /* Estilos personalizados para replicar la apariencia de Bancatlan */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+            margin: 0;
+            padding: 0;
+        }
+
+        .card {
+            margin: 50px auto;
+            max-width: 500px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .card-header {
+            background-color: #c0392b; /* Color rojo del Banco Atlántida */
+            color: #fff;
+            border-radius: 10px 10px 0 0;
+            padding: 10px;
+        }
+
+        .card-body {
+            padding: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+
+        .btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn-outline-primary {
+            color: #c0392b; /* Color rojo del Banco Atlántida */
+            background-color: #fff;
+            border: 1px solid #c0392b; /* Color rojo del Banco Atlántida */
+        }
+
+            .btn-outline-primary:hover {
+                background-color: #c0392b; /* Color rojo del Banco Atlántida */
+                color: #fff;
+            }
+    </style>
+</head>
+<body>
+    <div class="card text-primary">
+        <div class="card-header text-center">
+            <h5>Registro de Pago TC - Bancatlan</h5>
+        </div>
+        <div class="card-body text-center">
+            <div class="col-md-12">
+                <form id="pago-form" asp-action="Pago">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <div class="form-group">
+                        <input asp-for="Fecha" class="form-control" placeholder="Fecha">
+                        <span asp-validation-for="Fecha" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <input asp-for="Abono" class="form-control" placeholder="Abono">
+                        <span asp-validation-for="Abono" class="text-danger"></span>
+                    </div>
+                    <div class="card-footer text-center">
+                        <div class="form-group">
+                            <input type="submit" value="Guardar" class="btn btn-outline-primary btn-sm" />
+                            <a asp-action="Index" class="btn btn-outline-success btn-sm">Volver a la Lista</a>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    @section Scripts {
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.3/jquery.validate.min.js"></script>
+        <script>
+            $(document).ready(function () {
+                $("#pago-form").validate({
+                    rules: {
+                        Fecha: {
+                            required: true // La fecha es obligatoria
+                        },
+                        Monto: {
+                            required: true, // El abono es obligatorio
+                            number: true   // El abono debe ser un número
+                        }
+                    },
+                    messages: {
+                        Fecha: {
+                            required: "Por favor, ingresa la fecha del pago."
+                        },
+                        Monto: {
+                            required: "Por favor, ingresa el abono del pago.",
+                            number: "Por favor, ingresa un valor numérico para el abono."
+                        }
+                    }
+                });
+
+                $("#pago-form").submit(function (event) {
+                    event.preventDefault();
+
+                    if ($(this).valid()) {
+                        var formData = $(this).serialize();
+
+                        $.post("/api/Pagos/crear", formData)
+                            .done(function () {
+                                // Alerta de pago exitoso
+                                alert("El pago se ha realizado con éxito.");
+                                // Redirigir a la página de índice de pagos después de 2 segundos
+                                setTimeout(function () {
+                                    window.location.href = "/Index";
+                                }, 2000);
+                            })
+                            .fail(function () {
+                                alert("Error al realizar el pago.");
+                            });
+                    }
+                });
+            });
+        </script>
+    }
+
+</body>
+</html>

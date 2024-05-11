@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\buildMultiTargeting\TarjetaBA.Cliente.props" />
+</Project>

@@ -1,0 +1,39 @@
+﻿@model TarjetaBA.Cliente.Models.TarjetaViewModel
+
+<div class=" card text-primary">
+    <div class="card-header text-center">
+        <h5>Editar Tarjeta</h5>
+    </div>
+    <div class=" card-body text-primary">
+        <div class="row">
+            <div class="col-md-12">
+                <form asp-action="Edit">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <input type="hidden" asp-for="IdTarjeta" />
+                    <div class="form-group">
+                        <label asp-for="Cuenta" class="control-label"></label>
+                        <input asp-for="Cuenta" class="form-control" />
+                        <span asp-validation-for="Cuenta" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Nombre" class="control-label"></label>
+                        <textarea asp-for="Nombre" class="form-control"></textarea>
+                        <span asp-validation-for="Nombre" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Apellido" class="control-label"></label>
+                        <input asp-for="Apellido" class="form-control" />
+                        <span asp-validation-for="Apellido" class="text-danger"></span>
+                    </div>
+                    <div class=" card-footer text-center">
+                        <div class="form-group">
+                            <input type="submit" value="Guardar" class="btn btn-outline-primary btn-sm" />
+                            <a asp-action="Index" class="btn btn-outline-success btn-sm">Volver a la lista</a>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+</div>

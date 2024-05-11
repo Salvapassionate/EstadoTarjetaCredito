@@ -1,0 +1,95 @@
+﻿@model TarjetaBA.Cliente.Models.TarjetaViewModel
+
+<div class=" card text-primary">
+    <div class="card-header text-center">
+        <h5>Crear Tarjeta</h5>
+    </div>
+    <div class=" card-body text-center">
+        <div class=" col-md-12">
+            <form asp-action="Create">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group">
+                    <label></label>
+                    <input asp-for="Cuenta" class="form-control" placeholder="Cuenta">
+                    <span asp-validation-for="Cuenta" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label></label>
+                    <input asp-for="Nombre" class="form-control" placeholder="Nombre">
+                    <span asp-validation-for="Nombre" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label></label>
+                    <input asp-for="Apellido" class="form-control" placeholder="Apellido">
+                    <span asp-validation-for="Apellido" class="text-danger"></span>
+                </div>
+                <div class=" card-footer text-center">
+                    <div class="form-group">
+                        <input type="submit" value="Guardar" class="btn btn-outline-primary btn-sm" />
+                        <a asp-action="Index" class="btn btn-outline-success btn-sm">Volver a la Lista</a>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    @section Scripts {
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.3/jquery.validate.min.js"></script>
+        <script>
+            $(document).ready(function () {
+                // Validación del formulario de compra
+                $("#tarjeta-form").validate({
+                    rules: {
+                        Cuenta: {
+                            required: true // La fecha es obligatoria
+                        },
+                        Nombre: {
+                            required: true // La descripción es obligatoria
+                        },
+                        Apellido: {
+                            required: true, // El monto es obligatorio
+                            number: true   // El monto debe ser un número
+                        }
+                    },
+                    messages: {
+                        Cuenta: {
+                            required: "Por favor, ingresa la fecha de la compra."
+                        },
+                        Nombre: {
+                            required: "Por favor, ingresa una descripción para la compra."
+                        },
+                        Apellido: {
+                            required: "Por favor, ingresa el monto de la compra.",
+                            number: "Por favor, ingresa un valor numérico para el monto."
+                        }
+                    }
+                });
+                $("#tarjeta-form").submit(function (event) {
+                    event.preventDefault();
+
+                    if ($(this).valid()) {
+                        var formData = $(this).serialize();
+
+                        $.post("/api/Compras/crear", formData)
+                            .done(function () {
+                                // Alerta de compra exitosa
+                                alert("La compra se ha realizado con éxito.");
+                                // Redirigir a la página de índice de compras después de 2 segundos
+                                setTimeout(function () {
+                                    window.location.href = "/Index";
+                                }, 2000);
+                            })
+                            .fail(function () {
+                                alert("Error al crear la compra.");
+                            });
+                    }
+                });
+            });
+
+        </script>
+    }
+
+
+
+</div>
+
+
